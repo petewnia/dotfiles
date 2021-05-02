@@ -1,0 +1,137 @@
+source $VIMRUNTIME/defaults.vim
+
+" fundamentals?
+set hlsearch
+set incsearch
+set display+=lastline               " force to display long lines as possible
+set ignorecase
+"set smartcase
+set termguicolors
+set lazyredraw
+set hidden
+set confirm
+set mouse=a
+"set notimeout ttimeout ttimeoutlen=200
+"set pastetoggle=<F11>
+set visualbell
+"set t_vb=
+
+" indentation and tabs option
+set autoindent
+set expandtab
+set tabstop=4
+let &shiftwidth = &tabstop
+set softtabstop=-1
+set shiftround
+
+" go to the last place  in the file since exited (copied from machakann's vimrc)
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
+" backups swaps, and undos dirs settings (copied from machakann's vimrc)
+if has('persistent_undo')
+    set undodir=~/.vim/vimundo
+    set undofile
+endif
+set backup                          " use backup
+set swapfile                        " use swap file
+set backupdir=~/.vim/vimbackups
+if has("gui_win32")
+    set backupdir=H:\Programs\Vim\vim82\vimbackups
+    set undodir=H:\Programs\Vim\vim82\vimundo
+endif
+let &directory=&backupdir           " assign that path to make swap files is same as that for backup file
+
+" languages settings
+"set spell
+"set spelllang=en
+"set spelllang=en,cjk                " use english for spell check and cjk region is ignored
+"set spellsuggest=best               " choose correction engine for spell check
+set history=100                     " the stored number of commands/searching history
+"set iminsert=0                      " turn off ime when getting into insert mode
+"set imsearch=0                      " turn off ime when getting into searching mode
+
+" statusline (copied from machakann's vimrc)
+set noruler
+set laststatus=2
+
+" statusline displaying
+let &statusline =''
+" file path
+let &statusline .=' %<%F '
+" read only, modified, modifiable flags in brackets
+let &statusline .='%([%R%M]%) '
+
+" right-align everything past this point
+let &statusline .='%= '
+
+" position row:column (eg. 62:4...)
+let &statusline .='%(| %l:%c %)| '
+" file type (eg. python, ruby, etc..)
+let &statusline .='%(%{&filetype} %)| '
+" file format (eg. unix, dos, etc..)
+let &statusline .='%{&fileformat} | '
+" file encoding (eg. utf8, latin1, etc..)
+let &statusline .='%(%{(&fenc!=""?&fenc:&enc)} | %)'
+" buffer number
+let &statusline .='BUF #%n '
+"}}} end of statusline
+
+" make "Y" to work from the cursor to the end of line
+map Y y$
+
+" make Ctrl + L, redraw the screen and also clear higlights
+nnoremap <C-L> :nohl<CR><C-L>
+
+" font settings
+if has("gui_running")
+    if has("gui_gtk2")
+        set guifont=Inconsolata:h12
+    elseif has("gui_macvim")
+        set guifont=Hack:h17
+    elseif has("gui_win32")
+        set guifont=Inconsolata:h12
+endif
+
+" terminal cursor settings (doesn't work for now)
+"let &t_SI.="\e[5 q" "SI = INSERT mode
+"let &t_SR.="\e[1 q" "SR = REPLACE mode
+"let &t_EI.="\e[3 q" "EI = NORMAL mode (ELSE)
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" gui cursor settings
+
+" make everything blocks
+"set guicursor+=n-v-c-ve-o-i-ci-r-cr-sm:blinkon0
+
+" use underline as normal and swap etc.
+"set guicursor+=n-v-c:hor10-Cursor/lCursor
+"set guicursor+=ve:ver35-Cursor
+"set guicursor+=o:block-Cursor-blinkon0
+"set guicursor+=i-ci:ver15-Cursor/lCursor
+"set guicursor+=r-cr:block-Cursor/lCursor
+"set guicursor+=sm:hor20-Cursor/lCursor
+
+" colors and backgorund's color settings
+set background=light
+if has("gui_running")
+set background=light
+endif
+endif
+
+" thank you, machakann!
+colorscheme reki
+set background=light " need to put here for it to work for some reason.
+
+" make things easier to see (copied from machakann's vimrc)
+set list                            " visualize special characters
+set listchars=tab:>-,trail:-,eol:$,nbsp:%,extends:>,precedes:<
+" tmux true color support
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif

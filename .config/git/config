@@ -1,0 +1,6 @@
+[core]
+	excludesfile = ~/.config/git/ignore
+	editor = vim
+[user]
+	name = Tew
+	email = petewnia@protonmail.com
