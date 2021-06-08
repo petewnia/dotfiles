@@ -18,7 +18,7 @@ set visualbell
 
 " indentation and tabs option
 set autoindent
-set expandtab
+set noexpandtab
 set tabstop=4
 let &shiftwidth = &tabstop
 set softtabstop=-1
@@ -105,7 +105,7 @@ endif
 " gui cursor settings
 
 " make everything blocks
-"set guicursor+=n-v-c-ve-o-i-ci-r-cr-sm:blinkon0
+set guicursor+=a:blinkon0
 
 " use underline as normal and swap etc.
 "set guicursor+=n-v-c:hor10-Cursor/lCursor

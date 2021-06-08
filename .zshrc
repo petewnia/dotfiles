@@ -1,6 +1,8 @@
 #	Prompt
-PROMPT='%F{cyan}%n%f%F{white}@%f%F{blue}%m%f %K{magenta}%~%k %F{yellow}%B%#%b%f '
-RPROMPT='[%F{yellow}%?%f]'
+#PROMPT='%F{cyan}%n%f%F{white}@%f%F{blue}%m%f %K{magenta}%~%k %F{yellow}%B%#%b%f '
+#RPROMPT='[%F{yellow}%?%f]'
+PROMPT='%n@%m %~ %# '
+RPROMPT='%(?.%K{green}[%k%K{yellow}%?%k%K{red}]%k.%K{magenta}[%k%K{cyan}%?%k%K{blue}]%k'
 
 #	vi mode
 bindkey -v
