@@ -1,5 +1,24 @@
 source $VIMRUNTIME/defaults.vim
 
+" Try to load minpac.
+set packpath^=~/.vim
+packadd minpac
+
+if !exists('g:loaded_minpac')
+    " minpac is not available.
+else
+    " minpac is available.
+    call minpac#init()
+    call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+    call minpac#add('mattn/emmet-vim')
+    let g:user_emmet_leader_key = '<C-S>'
+
+    call minpac#add('rrethy/vim-hexokinase', { 'do': 'make hexokinase' })
+    let g:Hexokinase_highlighters = [ 'backgroundfull' ]
+
+endif
+
 " fundamentals?
 set hlsearch
 set incsearch
@@ -18,7 +37,7 @@ set visualbell
 
 " indentation and tabs option
 set autoindent
-set noexpandtab
+set expandtab
 set tabstop=4
 let &shiftwidth = &tabstop
 set softtabstop=-1
@@ -89,9 +108,9 @@ if has("gui_running")
     if has("gui_gtk2")
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")
-        set guifont=Hack:h17
+        set guifont=Menlo:h17
     elseif has("gui_win32")
-        set guifont=Inconsolata:h12
+        set guifont=Consolas:h12
 endif
 
 " terminal cursor settings (doesn't work for now)
@@ -129,9 +148,12 @@ set background=light " need to put here for it to work for some reason.
 " make things easier to see (copied from machakann's vimrc)
 set list                            " visualize special characters
 set listchars=tab:>-,trail:-,eol:$,nbsp:%,extends:>,precedes:<
+
 " tmux true color support
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
+
+" emmet-vim
